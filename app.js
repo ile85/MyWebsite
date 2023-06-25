@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000; // Use the PORT environment variable if available, or default to 3000
 const bodyParser = require('body-parser');
 const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = process.env.MONGODB_URI || "mongodb+srv://ilcodimeski85:20061985Ile.@ikotechnology.gs5bpya.mongodb.net/?retryWrites=true&w=majority";
 
-const uri = "mongodb+srv://ilcodimeski85:20061985Ile.@cluster0.iy2htxi.mongodb.net/?retryWrites=true&w=majority";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -75,9 +75,10 @@ async function run() {
     console.log("Connected to MongoDB!");
 
     // Start the express server
+    const port = process.env.PORT || 3000;
     app.listen(port, () => {
-      console.log(`App listening at http://localhost:${port}`);
-    });
+    console.log(`App listening at http://localhost:${port}`);
+});
 
   } catch (err) {
     console.error(err);
